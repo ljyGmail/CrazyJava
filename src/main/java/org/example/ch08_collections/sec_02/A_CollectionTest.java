@@ -3,7 +3,7 @@ package org.example.ch08_collections.sec_02;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class CollectionTest {
+public class A_CollectionTest {
     public static void main(String[] args) {
         var c = new ArrayList();
 
