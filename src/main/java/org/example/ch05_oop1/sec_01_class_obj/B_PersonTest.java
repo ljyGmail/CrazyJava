@@ -1,4 +1,4 @@
-package org.example.ch05_oop1.sec_01;
+package org.example.ch05_oop1.sec_01_class_obj;
 
 public class B_PersonTest {
     public static void main(String[] args) {
@@ -21,5 +21,7 @@ public class B_PersonTest {
         p.say("Java语言很简单，学习很容易!");
         // 直接输出p的name实例变量，将输出 李刚
         System.out.println(p.name);
+
+        var p2 = p;
     }
 }

@@ -1,4 +1,4 @@
-package org.example.ch05_oop1.sec_01;
+package org.example.ch05_oop1.sec_01_class_obj;
 
 public class A_Person {
     // 下面定义了两个成员变量
