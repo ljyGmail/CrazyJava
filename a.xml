@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-05-25T10:18:42.842902800Z</date>
+  <millis>1685009922842</millis>
+  <nanos>902800</nanos>
+  <sequence>0</sequence>
+  <logger>fkjava</logger>
+  <level>INFO</level>
+  <class>org.example.ch07_basic_api.sec_07_java11_improved_i18n_format.D_LoggerTest</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>info信息</message>
+</record>
+<record>
+  <date>2023-05-25T10:18:42.897014600Z</date>
+  <millis>1685009922897</millis>
+  <nanos>14600</nanos>
+  <sequence>1</sequence>
+  <logger>fkjava</logger>
+  <level>SEVERE</level>
+  <class>org.example.ch07_basic_api.sec_07_java11_improved_i18n_format.D_LoggerTest</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>error信息</message>
+</record>
+</log>
