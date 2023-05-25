@@ -19,10 +19,10 @@ public class C_HeloArg {
             currentLocale = Locale.getDefault(Locale.Category.FORMAT);
         }
         // 根据Locale加载语言资源
-        var bundle= ResourceBundle.getBundle("myMess", currentLocale);
+        var bundle = ResourceBundle.getBundle("myMess", currentLocale);
         // 取得已加载的语言资源文件中msg对应消息
-        var msg=bundle.getString("msg");
+        var msg = bundle.getString("msg");
         // 使用MessageFormat为带占位符的字符串传入参数
-        System.out.println(MessageFormat.format(msg, "yeeku", new Date()));
+        System.out.println(MessageFormat.format(msg, "자바", new Date()));
     }
 }
