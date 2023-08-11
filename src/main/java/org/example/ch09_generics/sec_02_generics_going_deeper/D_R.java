@@ -27,6 +27,7 @@ public class D_R<T> {
         System.out.println(l1.getClass() == l2.getClass());
 
         Collection<String> cs = new ArrayList<>();
+        Collection<Integer> in = new ArrayList<>();
         if (cs instanceof ArrayList<String>) {
             System.out.println("cs is an ArrayList<String>");
         }

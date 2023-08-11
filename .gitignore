@@ -10,6 +10,7 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/resourceBundles.xml
 *.iws
 *.iml
 *.ipr
