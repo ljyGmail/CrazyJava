@@ -28,6 +28,6 @@ public class F_InferenceTest {
         // 希望系统能推断出调用nil()方法时泛型为String类型
         // 但实际上Java 8依然推断不出来，所以下面代码报错
         // String s = MyUtil.nil().head();
-        String s = MyUtil.<String>nil().head();
+        MyUtil.<String>nil().head();
     }
 }
