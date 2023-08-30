@@ -1,18 +1,26 @@
-package org.example.ch11_awt.sec_08_image_draw;
+package org.example.ch11_awt.sec_09_clipboard;
 
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
-public class A_HandDraw {
+public class C_CopyImage {
+    // 系统剪贴板
+    private Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+    // 使用ArrayList来保存所有黏贴进来的Image--就是当成图层处理
+    List<Image> imageList = new ArrayList<>();
     // 画图区的宽度
     private final int AREA_WIDTH = 500;
     // 画图区的高度
     private final int AREA_HEIGHT = 400;
-    // 下面的preX、preY保存了上一次鼠标拖动事件的鼠标坐标
+    // 下面的preX, preY保存了上一次鼠标拖动事件的鼠标坐标
     private int preX = -1;
     private int preY = -1;
     // 定义一个右键菜单用于设置画笔颜色
@@ -24,7 +32,7 @@ public class A_HandDraw {
     BufferedImage image = new BufferedImage(AREA_WIDTH, AREA_HEIGHT, BufferedImage.TYPE_INT_RGB);
     // 获取image对象的Graphics
     Graphics g = image.getGraphics();
-    private Frame f = new Frame("简单手绘程序");
+    private Frame f = new Frame("复制图片");
     private DrawCanvas drawArea = new DrawCanvas();
     // 用于保存画笔颜色
     private Color foreColor = new Color(255, 0, 0);
@@ -42,7 +50,7 @@ public class A_HandDraw {
                 foreColor = new Color(0, 0, 255);
             }
         };
-        //  为三个菜单添加事件监听器
+        // 为三个菜单添加事件监听器
         redItem.addActionListener(menuListener);
         greenItem.addActionListener(menuListener);
         blueItem.addActionListener(menuListener);
@@ -57,17 +65,16 @@ public class A_HandDraw {
         drawArea.setPreferredSize(new Dimension(AREA_WIDTH, AREA_HEIGHT));
         // 监听鼠标移动动作
         drawArea.addMouseMotionListener(new MouseMotionAdapter() {
-            // 实现按下鼠标并拖动的事件处理器
             @Override
             public void mouseDragged(MouseEvent e) {
                 // 如果preX和preY大于0
                 if (preX > 0 && preY > 0) {
                     // 设置当前颜色
                     g.setColor(foreColor);
-                    // 绘制从上一次鼠标拖动事件点到本次鼠标拖动事件点的线段
+                    // 绘制从上一次鼠标拖动事件到本次鼠标拖动事件点的线段
                     g.drawLine(preX, preY, e.getX(), e.getY());
                 }
-                // 将当前鼠标事件点的X, Y坐标保存起来
+                // 将当前鼠标事件点的X、Y坐标保存起来
                 preX = e.getX();
                 preY = e.getY();
                 // 重绘drawArea对象
@@ -77,35 +84,63 @@ public class A_HandDraw {
 
         // 监听鼠标事件
         drawArea.addMouseListener(new MouseAdapter() {
-            // 实现鼠标松开的事件处理器
             @Override
             public void mouseReleased(MouseEvent e) {
                 // 弹出右键菜单
                 if (e.isPopupTrigger()) {
                     pop.show(drawArea, e.getX(), e.getY());
                 }
-                // 松开鼠标键时，把上一次鼠标拖动事件的X, Y坐标设为-1
+                // 松开鼠标键时，把上一次鼠标拖动事件的X，Y坐标设为-1
                 preX = -1;
                 preY = -1;
             }
         });
-
         f.add(drawArea);
+        var p = new Panel();
+        var copy = new Button("Copy");
+        var paste = new Button("Paste");
+        copy.addActionListener(event -> {
+            // 将image对象封装成ImageSelection对象
+            var contents = new B_ImageSelection(image);
+            // 将ImageSelection对象放入剪贴板
+            clipboard.setContents(contents, null);
+        });
+
+        paste.addActionListener(event -> {
+            // 如果剪贴板中包含imageFlavor内容
+            if (clipboard.isDataFlavorAvailable(DataFlavor.imageFlavor)) {
+                try {
+                    // 取出剪贴板中的imageFlavor内容，并将其添加 到List集合中
+                    imageList.add((Image) clipboard.getData(DataFlavor.imageFlavor));
+                    drawArea.repaint();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        p.add(copy);
+        p.add(paste);
+        f.add(p, BorderLayout.SOUTH);
         f.pack();
         f.setVisible(true);
     }
 
     public static void main(String[] args) {
-        new A_HandDraw().init();
+        new C_CopyImage().init();
     }
 
-    class DrawCanvas extends Canvas {
-        // 重写Canvas的paint()方法，实现绘图
+    private class DrawCanvas extends Canvas {
 
+        // 重写Canvas的paint()方法，实现绘画
         @Override
         public void paint(Graphics g) {
             // 将image绘制到该组件上
             g.drawImage(image, 0, 0, null);
+            // 将List里的所有Image对象都绘制出来
+            for (var img : imageList) {
+                g.drawImage(img, 0, 0, null);
+            }
         }
     }
 }
