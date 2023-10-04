@@ -79,6 +79,6 @@ class MyImageCellRenderer extends JPanel implements TreeCellRenderer {
 
     // 通过该方法来树则该ImageCellRenderer的最佳大小
     public Dimension getPreferredSize() {
-        return new Dimension(160, 160);
+        return new Dimension(80, 80);
     }
 }
