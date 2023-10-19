@@ -1,0 +1,2 @@
+普通字符串
+org.example.ch15_io.sec_05_io_redirection.A_RedirectOut@16b98e56
