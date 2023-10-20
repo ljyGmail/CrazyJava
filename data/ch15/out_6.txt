@@ -1,0 +1,2 @@
+键盘输入的内容是: 普通字符串
+键盘输入的内容是: org.example.ch15_io.sec_06_jvm_read_write_process.B_WriteToProcess@1e80bfe8
