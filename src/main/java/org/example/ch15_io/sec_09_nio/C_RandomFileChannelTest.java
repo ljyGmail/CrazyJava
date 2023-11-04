@@ -8,7 +8,7 @@ import java.nio.channels.FileChannel;
 
 public class C_RandomFileChannelTest {
     public static void main(String[] args) throws IOException {
-        var f = new File("data/ch15/poem2.txt");
+        var f = new File("data/ch15/9_2_a.txt");
         try (
                 // 创建一个RandomAccessFile对象
                 var raf = new RandomAccessFile(f, "rw");
