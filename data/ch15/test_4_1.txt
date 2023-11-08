@@ -1,0 +1,2 @@
+普通字符串
+org.example.ch15_io.sec_04_io_system.A_PrintStreamTest@372f7a8d
