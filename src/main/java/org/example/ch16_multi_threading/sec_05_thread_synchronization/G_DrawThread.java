@@ -1,4 +1,4 @@
-package org.example.ch16_multi_threading.sec_05_thread_synchronization.sec_06_thread_synchronization;
+package org.example.ch16_multi_threading.sec_05_thread_synchronization;
 
 public class G_DrawThread extends Thread {
     // 模拟用户账户

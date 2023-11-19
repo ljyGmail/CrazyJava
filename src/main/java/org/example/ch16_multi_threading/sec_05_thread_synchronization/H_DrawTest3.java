@@ -1,4 +1,4 @@
-package org.example.ch16_multi_threading.sec_05_thread_synchronization.sec_06_thread_synchronization;
+package org.example.ch16_multi_threading.sec_05_thread_synchronization;
 
 public class H_DrawTest3 {
     public static void main(String[] args) {

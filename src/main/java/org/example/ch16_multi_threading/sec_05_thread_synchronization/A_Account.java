@@ -1,4 +1,4 @@
-package org.example.ch16_multi_threading.sec_05_thread_synchronization.sec_06_thread_synchronization;
+package org.example.ch16_multi_threading.sec_05_thread_synchronization;
 
 public class A_Account {
     // 封装账户编号、账户余额的两个成员变量
