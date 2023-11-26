@@ -1,4 +1,4 @@
-package org.example.ch16_multi_threading;
+package org.example.ch16_multi_threading.sec_09_thread_related_classes;
 
 class Account {
     // 定义一个ThreadLocal类型的变量，该变量将是一个线程局部变量
